@@ -17,9 +17,30 @@ void Farfadet::init(uint8_t txPin, Stream& serial)
   tmc.setAccelerations(250, 350, 500, 700); //AMAX, DMAX, A1, D1
 }
 
+void Farfadet::setControlMode(uint8_t mode)
+{
+  if( mode != _controlMode )
+  {
+    _controlMode = mode;
+    if( _controlMode == SPEED_CONTROL_MODE )
+    {
+      tmc.setRampMode(Estee_TMC5130::VELOCITY_MODE);
+    }
+    else if( _controlMode == LINEAR_POSITION_MODE || _controlMode == ANGULAR_POSITION_MODE )
+    {
+      tmc.setRampMode(Estee_TMC5130::POSITIONING_MODE);
+    }
+  }
+}
+
 void Farfadet::setTargetPosition(long target)
 {
-  tmc.setTargetPosition(target);
+  if( _controlMode == LINEAR_POSITION_MODE || _controlMode == ANGULAR_POSITION_MODE )
+  {
+    tmc.setTargetPosition(target);
+  }
+}
+
 }
 
 long Farfadet::getCurrentPosition()
