@@ -17,6 +17,8 @@ void Farfadet::init(uint8_t txPin, int stepsPerTurn, Stream& serial)
   tmc.setMaxSpeed(200);
   tmc.setRampSpeeds(0, 0.1, 100); //Start, stop, threshold speeds
   tmc.setAccelerations(250, 350, 500, 700); //AMAX, DMAX, A1, D1
+}
+
 void Farfadet::stop()
 {
   tmc.stop();
@@ -58,11 +60,12 @@ void Farfadet::setTargetSpeed(float speed)
   tmc.setMaxSpeed(speed);
 }
 
-long Farfadet::getCurrentPosition()
+float Farfadet::getCurrentPosition()
 {
   if( _controlMode == LINEAR_POSITION_MODE  )
   {
-    return tmc.getCurrentPosition();
+    float nbTurns = tmc.getCurrentPosition()/_stepsPerTurn;
+    return nbTurns*M_PI*_spoolDiameter;
   }
   else if( _controlMode == ANGULAR_POSITION_MODE )
   {

@@ -15,10 +15,9 @@ public:
   void stop();
   void setControlMode(uint8_t mode);
   void setTargetPosition(float target);//in degres or in meters depending on the mode
-  long getCurrentPosition();
+  float getCurrentPosition();
   void setTargetSpeed(float speed);
   float getCurrentSpeed();
-
   void setSpoolDiameter(float diameter);
   float getSpoolDiameter();
 
