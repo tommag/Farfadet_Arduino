@@ -10,11 +10,11 @@ enum FARFADET_MODES
 class Farfadet
 {
 public:
-  void init(uint8_t txPin);
-  void init(uint8_t txPin, Stream& serial);
+  void init(uint8_t txPin, int stepsPerTurn);
+  void init(uint8_t txPin, int stepsPerTurn, Stream& serial);
 
   void setControlMode(uint8_t mode);
-  void setTargetPosition(long target);
+  void setTargetPosition(long target);//in degres or in meters depending on the mode
   long getCurrentPosition();
   void setTargetSpeed(float speed);
   float getCurrentSpeed();
@@ -22,4 +22,5 @@ public:
 private:
   Estee_TMC5130_UART_Transceiver tmc;
   uint8_t _controlMode;
+  int _stepsPerTurn;
 };
