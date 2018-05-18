@@ -12,7 +12,7 @@ class Farfadet
 public:
   void init(uint8_t txPin, int stepsPerTurn);
   void init(uint8_t txPin, int stepsPerTurn, Stream& serial);
-
+  void stop();
   void setControlMode(uint8_t mode);
   void setTargetPosition(float target);//in degres or in meters depending on the mode
   long getCurrentPosition();
