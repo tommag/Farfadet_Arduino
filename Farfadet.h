@@ -19,6 +19,7 @@ public:
   void setTargetSpeed(float speed);
   float getCurrentSpeed();
   void setSpoolDiameter(float diameter);
+  void setTargetSpeedRPM(float rpm);
   float getSpoolDiameter();
 
 private:

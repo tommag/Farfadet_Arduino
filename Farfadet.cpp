@@ -60,6 +60,11 @@ void Farfadet::setTargetSpeed(float speed)
   tmc.setMaxSpeed(speed);
 }
 
+void Farfadet::setTargetSpeedRPM(float rpm)
+{
+  tmc.setMaxSpeed(rpm*_stepsPerTurn/60.0);
+}
+
 float Farfadet::getCurrentPosition()
 {
   if( _controlMode == LINEAR_POSITION_MODE  )
