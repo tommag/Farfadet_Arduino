@@ -35,11 +35,13 @@ void Farfadet::setControlMode(uint8_t mode)
   }
 }
 
-void Farfadet::setTargetPosition(long target)
+void Farfadet::setTargetPosition(float target)
 {
   if( _controlMode == LINEAR_POSITION_MODE  )
   {
-    tmc.setTargetPosition(target);
+    float nbTurns = target/(M_PI*_spoolDiameter);
+    long targetSteps = nbTurns * _stepsPerTurn;
+    tmc.setTargetPosition(targetSteps);
   }
   else if( _controlMode == ANGULAR_POSITION_MODE )
   {
@@ -72,4 +74,14 @@ long Farfadet::getCurrentPosition()
 float Farfadet::getCurrentSpeed()
 {
   return tmc.getCurrentSpeed();
+}
+
+void Farfadet::setSpoolDiameter(float diameter)
+{
+  _spoolDiameter = diameter;
+}
+
+float Farfadet::getSpoolDiameter()
+{
+  return _spoolDiameter;
 }
