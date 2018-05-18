@@ -11,7 +11,7 @@ void Farfadet::init(uint8_t txPin, int stepsPerTurn, Stream& serial)
   Serial1.begin(250000);
   Serial1.setTimeout(5); // TMC5130 should answer back immediately when reading a register.
   _stepsPerTurn = stepsPerTurn;
-  _spoolDiameter = stepsPerTurn;
+  _spoolDiameter = 0;
   tmc.begin(4, 4, Estee_TMC5130::NORMAL_MOTOR_DIRECTION);
   setControlMode(ANGULAR_POSITION_MODE);
   tmc.setMaxSpeed(200);
@@ -43,9 +43,7 @@ void Farfadet::setTargetPosition(long target)
   }
   else if( _controlMode == ANGULAR_POSITION_MODE )
   {
-    float targetSteps = target*_stepsPerTurn/360.0;
-    Serial.print("target :");
-    Serial.println(targetSteps);
+    long targetSteps = target*_stepsPerTurn/360.0;
     tmc.setTargetPosition(targetSteps);
   }
 }
@@ -66,8 +64,7 @@ long Farfadet::getCurrentPosition()
   }
   else if( _controlMode == ANGULAR_POSITION_MODE )
   {
-    long currentSteps =   tmc.getCurrentPosition();
-    long currentAngle = currentSteps*360.0/_stepsPerTurn;
+    long currentAngle = tmc.getCurrentPosition()*360.0/_stepsPerTurn;
     return currentAngle;
   }
 }

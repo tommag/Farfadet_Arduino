@@ -19,8 +19,12 @@ public:
   void setTargetSpeed(float speed);
   float getCurrentSpeed();
 
+  void setSpoolDiameter(float diameter);
+  float getSpoolDiameter();
+
 private:
   Estee_TMC5130_UART_Transceiver tmc;
   uint8_t _controlMode;
   int _stepsPerTurn;
+  float _spoolDiameter;//in meters
 };
