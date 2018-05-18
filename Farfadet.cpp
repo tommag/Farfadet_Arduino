@@ -83,7 +83,13 @@ float Farfadet::getCurrentPosition()
 
 float Farfadet::getCurrentSpeed()
 {
-  return tmc.getCurrentSpeed();
+  float rps = getCurrentSpeedRPM()/60.0;
+  return rps*M_PI*_spoolDiameter;
+}
+
+float Farfadet::getCurrentSpeedRPM()
+{
+  return  tmc.getCurrentSpeed()*60.0/_stepsPerTurn;
 }
 
 void Farfadet::setSpoolDiameter(float diameter)
