@@ -57,7 +57,9 @@ void Farfadet::setTargetPosition(float target)
 
 void Farfadet::setTargetSpeed(float speed)
 {
-  tmc.setMaxSpeed(speed);
+  float rps = speed/(M_PI*_spoolDiameter);
+  float rpm = rps*60;
+  setTargetSpeedRPM(rpm);
 }
 
 void Farfadet::setTargetSpeedRPM(float rpm)
