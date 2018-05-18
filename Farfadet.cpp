@@ -55,10 +55,7 @@ void Farfadet::setTargetPosition(float target)
 
 void Farfadet::setTargetSpeed(float speed)
 {
-  if( _controlMode == SPEED_CONTROL_MODE )
-  {
-    tmc.setMaxSpeed(speed);
-  }
+  tmc.setMaxSpeed(speed);
 }
 
 long Farfadet::getCurrentPosition()
