@@ -16,6 +16,7 @@ public:
   void setControlMode(uint8_t mode);
   void setTargetPosition(long target);
   long getCurrentPosition();
+  void setTargetSpeed(float speed);
   float getCurrentSpeed();
 
 private:
