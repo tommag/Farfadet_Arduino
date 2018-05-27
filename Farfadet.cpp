@@ -97,6 +97,11 @@ void Farfadet::setAcceleration(float acceleration)
   tmc.setAcceleration(acceleration);
 }
 
+void Farfadet::setAccelerationRamps(float maxAccel, float maxDecel, float startAccel, float finalDecel)
+{
+  tmc.setAccelerations(maxAccel, maxDecel, startAccel, finalDecel);
+}
+
 void Farfadet::setSpoolDiameter(float diameter)
 {
   _spoolDiameter = diameter;

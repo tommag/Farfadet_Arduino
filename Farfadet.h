@@ -21,6 +21,7 @@ public:
   float getCurrentSpeed();//in m.s
   float getCurrentSpeedRPM();
   void setAcceleration(float acceleration);
+  void setAccelerationRamps(float maxAccel, float maxDecel, float startAccel, float finalDecel);
   void setSpoolDiameter(float diameter);//in meters
   float getSpoolDiameter();
 
