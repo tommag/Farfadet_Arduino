@@ -92,6 +92,11 @@ float Farfadet::getCurrentSpeedRPM()
   return  tmc.getCurrentSpeed()*60.0/_stepsPerTurn;
 }
 
+void Farfadet::setAcceleration(float acceleration)
+{
+  tmc.setAcceleration(acceleration);
+}
+
 void Farfadet::setSpoolDiameter(float diameter)
 {
   _spoolDiameter = diameter;
