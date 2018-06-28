@@ -4,11 +4,11 @@ void Farfadet::init(uint8_t txPin, int stepsPerTurn)
   init(txPin, stepsPerTurn, Serial1);
 }
 
-void Farfadet::init(uint8_t txPin, int stepsPerTurn, Stream& serial)
+void Farfadet::init(uint8_t txPin, int stepsPerTurn, HardwareSerial& serial)
 {
-  tmc = Estee_TMC5130_UART_Transceiver(txPin, Serial1, 1);
-  Serial1.begin(250000);
-  Serial1.setTimeout(5); // TMC5130 should answer back immediately when reading a register.
+  tmc = Estee_TMC5130_UART_Transceiver(txPin, serial, 1);
+  serial.begin(250000);
+  serial.setTimeout(5); // TMC5130 should answer back immediately when reading a register.
   _stepsPerTurn = stepsPerTurn;
   _spoolDiameter = 0;
   tmc.begin(4, 4, Estee_TMC5130::NORMAL_MOTOR_DIRECTION);
