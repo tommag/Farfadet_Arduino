@@ -1,5 +1,4 @@
 #include <Farfadet.h>
-
 void Farfadet::init(uint8_t txPin, int stepsPerTurn)
 {
   init(txPin, stepsPerTurn, Serial1);
@@ -79,6 +78,7 @@ float Farfadet::getCurrentPosition()
     long currentAngle = tmc.getCurrentPosition()*360.0/_stepsPerTurn;
     return currentAngle;
   }
+  return 0;
 }
 
 float Farfadet::getCurrentSpeed()
