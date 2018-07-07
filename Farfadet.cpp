@@ -1,12 +1,12 @@
 #include <Farfadet.h>
-void Farfadet::init(uint8_t txPin, int stepsPerTurn)
+void Farfadet::init(uint8_t txPin, int stepsPerTurn, int address)
 {
-  init(txPin, stepsPerTurn, Serial1);
+  init(txPin, stepsPerTurn, Serial1,address);
 }
 
-void Farfadet::init(uint8_t txPin, int stepsPerTurn, HardwareSerial& serial)
+void Farfadet::init(uint8_t txPin, int stepsPerTurn, HardwareSerial& serial, int address)
 {
-  tmc = Estee_TMC5130_UART_Transceiver(txPin, serial, 1);
+  tmc = Estee_TMC5130_UART_Transceiver(txPin, serial, address);
   serial.begin(250000);
   serial.setTimeout(5); // TMC5130 should answer back immediately when reading a register.
   _stepsPerTurn = stepsPerTurn;

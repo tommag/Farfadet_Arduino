@@ -10,8 +10,8 @@ enum FARFADET_MODES
 class Farfadet
 {
 public:
-  void init(uint8_t txPin, int stepsPerTurn);
-  void init(uint8_t txPin, int stepsPerTurn, HardwareSerial& serial);
+  void init(uint8_t txPin, int stepsPerTurn, int address = 1);
+  void init(uint8_t txPin, int stepsPerTurn, HardwareSerial& serial, int address = 1);
   void stop();
   void setControlMode(uint8_t mode);
   void setTargetPosition(float target);//in degres or in meters depending on the mode
