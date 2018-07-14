@@ -3,6 +3,11 @@
 
 bool FarfadetDiscovery::poll(uint8_t txPin, HardwareSerial& serial)
 {
+  for (int i = 0; i < MAX_MOTOR_COUNT; i++)
+  {
+    motors[i] = Estee_TMC5130_UART_Transceiver();
+  }
+  discoveredMotors = 0;
   serial.begin(500000);
   serial.setTimeout(1);
   bool chainEnd = false;
