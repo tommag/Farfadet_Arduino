@@ -5,10 +5,10 @@
 
 class FarfadetDiscovery
 {
-  public:
-    bool poll(uint8_t txPin, HardwareSerial& serial);
-
-  private:
-    int discoveredMotors = 0;
-    Estee_TMC5130_UART_Transceiver motors[MAX_MOTOR_COUNT];
+public:
+  bool poll(uint8_t txPin, HardwareSerial& serial);
+  Farfadet getMotorAtIndex(int index);
+private:
+  int discoveredMotors = 0;
+  Farfadet motors[MAX_MOTOR_COUNT];
 };

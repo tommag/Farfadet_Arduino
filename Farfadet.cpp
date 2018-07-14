@@ -16,6 +16,12 @@ void Farfadet::init(uint8_t txPin, int stepsPerTurn, HardwareSerial& serial, int
   tmc.setMaxSpeed(200);
   tmc.setRampSpeeds(0, 0.1, 100); //Start, stop, threshold speeds
   tmc.setAccelerations(250, 350, 500, 700); //AMAX, DMAX, A1, D1
+  tmc.resetCommunication();
+}
+
+void Farfadet::setAddress(int address)
+{
+  tmc.setSlaveAddress(address);
 }
 
 void Farfadet::stop()
@@ -110,4 +116,21 @@ void Farfadet::setSpoolDiameter(float diameter)
 float Farfadet::getSpoolDiameter()
 {
   return _spoolDiameter;
+}
+
+void Farfadet::resetCommunication()
+{
+  tmc.resetCommunication();
+}
+
+void Farfadet::activateBusOutput()
+{
+    tmc.writeRegister(TMC5130_Reg::IO_INPUT_OUTPUT, 0); //set NAO low
+}
+
+Estee_TMC5130_UART::ReadStatus Farfadet::getReadStatus()
+{
+  Estee_TMC5130_UART::ReadStatus readStatus;
+  tmc.readRegister(TMC5130_Reg::GCONF, &readStatus);
+  return readStatus;
 }

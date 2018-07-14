@@ -12,6 +12,7 @@ class Farfadet
 public:
   void init(uint8_t txPin, int stepsPerTurn, int address = 1);
   void init(uint8_t txPin, int stepsPerTurn, HardwareSerial& serial, int address = 1);
+  void setAddress(int address);
   void stop();
   void setControlMode(uint8_t mode);
   void setTargetPosition(float target);//in degres or in meters depending on the mode
@@ -24,6 +25,9 @@ public:
   void setAccelerationRamps(float maxAccel, float maxDecel, float startAccel, float finalDecel);
   void setSpoolDiameter(float diameter);//in meters
   float getSpoolDiameter();
+  void resetCommunication();
+  void activateBusOutput();
+  Estee_TMC5130_UART::ReadStatus getReadStatus();
 
 private:
   Estee_TMC5130_UART_Transceiver tmc;
